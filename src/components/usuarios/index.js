@@ -1,34 +1,31 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as UsuariosActions from '../../actions/UsuariosAction'
+import Loader from '../general/Loader'
+import Fatal from '../general/Fatal'
+import Tabla from './Tabla'
 
 class Usuarios extends React.Component {
 	componentDidMount() {
-		this.props.traerTodos()
+		if (!this.props.usuarios.length) {
+			this.props.traerTodos()
+		}
 	}
 
-	PonerFilas = () =>
-		this.props.usuarios.map(usuario => (
-			<tr key={usuario.id}>
-				<td>{usuario.name}</td>
-				<td>{usuario.email}</td>
-				<td>{usuario.website}</td>
-			</tr>
-		))
+	PonerContenido = () => {
+		if (this.props.loading) {
+			return <Loader />
+		}
+		if (this.props.error) {
+			return <Fatal message={this.props.error} />
+		}
+		return <Tabla />
+	}
 
 	render() {
 		return (
 			<div>
-				<table className="tabla">
-					<thead>
-						<tr>
-							<th>Nombre</th>
-							<th>Correo</th>
-							<th>Enlace</th>
-						</tr>
-					</thead>
-					<tbody>{this.PonerFilas()}</tbody>
-				</table>
+				<h1>Usuarios</h1> <br /> {this.PonerContenido()}
 			</div>
 		)
 	}

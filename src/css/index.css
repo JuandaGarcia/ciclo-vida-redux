@@ -26,3 +26,25 @@
 	color: white;
 	padding-right: 50px;
 }
+
+.center {
+	text-align: center;
+}
+
+.rojo {
+	color: red;
+}
+
+.pub_titulo {
+	border-top: 1px solid black;
+}
+
+.contenedor_tareas {
+	font-size: 20px;
+	margin-left: 50px;
+	margin-bottom: 70px;
+}
+
+.m-left {
+	margin-left: 20px;
+}
